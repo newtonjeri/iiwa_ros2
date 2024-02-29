@@ -1,22 +1,40 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
+  	
+  <!-- Contants -->
+  <xacro:property name="PI" value="3.14159265359"/>
   <xacro:macro name="iiwa" params="parent prefix *origin">
 
   <material name="gray">
     <color rgba="0.5 0.5 0.5 1.0"/>
   </material>
 
-  <link name="${prefix}iiwa_base" type="fixed"/>
-
+<!-- Joint between the ${parent} and the added base -->
   <joint name="${prefix}iiwa_root_joint" type="fixed">
-      <xacro:insert_block name="origin" />
+      <origin xyz = "0 0 0.86" rpy = "${PI} 0 ${-PI/2}" />
       <parent link="${parent}"/>
       <child link="${prefix}iiwa_base"/>
   </joint>
 
+<!-- Added base -->
+ <link name = "${prefix}iiwa_base">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <geometry>
+          <mesh filename = "package://iiwa_description/meshes/flex_fellow_h800/flex_fellow_h800.dae"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <geometry>
+          <mesh filename = "package://iiwa_description/meshes/flex_fellow_h800/flex_fellow_h800.stl"/>
+        </geometry>
+      </collision>
+ </link>
+
   <joint name="${prefix}iiwa_base_joint" type="fixed">
-      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <origin rpy="${PI} 0 ${-PI/2}" xyz="0 0 0"/>
       <parent link="${prefix}iiwa_base"/>
       <child link="${prefix}link_0"/>
   </joint>
@@ -174,8 +192,41 @@
         <inertia ixx="0.01"  ixy="0"  ixz="0" iyy="0.01" iyz="0" izz="0.01" />
       </inertial>
   </link>
-  <link name="${prefix}tool0"/>
 
+  <!-- Added Gripper Link-->
+  <link name="${prefix}tool0">
+    <visual>
+      <origin xyz = "0 0 0" rpy = "0 0 0"/>
+      <geometry>
+        <mesh filename = "package://iiwa_description/meshes/lbr_iiwa_14_r820/klt_gripper_iiwa_90_deg.stl" scale ="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz = "0 0 0" rpy = "0 0 0"/>
+      <geometry>
+        <mesh filename = "package://iiwa_description/meshes/lbr_iiwa_14_r820/klt_gripper_iiwa_90_deg.stl" scale ="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Added table plane-->
+  <link name="${prefix}table_plane">
+    <visual>
+      <origin xyz = "0 0 0" rpy = "0 0 0"/>
+      <geometry>
+        <mesh filename = "package://iiwa_description/meshes/table_plane.stl" scale ="0.0001 0.0001 0.0001"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz = "0 0 0" rpy = "0 0 0"/>
+      <geometry>
+        <mesh filename = "package://iiwa_description/meshes/table_plane.stl" scale ="0.0001 0.0001 0.0001"/>
+      </geometry>
+    </collision>
+  </link>
+  
   <joint name="${prefix}joint_a1" type="revolute">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <parent link="${prefix}link_0"/>
@@ -226,11 +277,18 @@
       <limit effort="40" lower="-3.0541" upper="3.0541" velocity="2.356"/>
   </joint>
   <joint name="${prefix}joint_a7-tool0" type="fixed">
-      <origin rpy="0 0 0" xyz="0 0 0.154"/>
+      <origin rpy="0 ${PI/2} ${PI/2}" xyz="0 -0.06 0.205"/>
       <parent link="${prefix}link_7"/>
       <child link="${prefix}tool0"/>
       <axis xyz="0 0 0"/>
   </joint>
 
+  <!-- Joint Between the added base and the table-->
+  <joint name="${prefix}joint_a8" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.3 0.50 0.10"/>
+    <parent link="${prefix}iiwa_base"/>
+    <child link="${prefix}table_plane"/>
+    <axis xyz="0 0 0"/>
+</joint>
   </xacro:macro>
 </robot>
