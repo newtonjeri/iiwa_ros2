@@ -34,7 +34,7 @@
  </link>
 
   <joint name="${prefix}iiwa_base_joint" type="fixed">
-      <origin rpy="${PI} 0 ${-PI/2}" xyz="0 0 0"/>
+      <origin rpy="${PI} 0 ${PI/2}" xyz="0.52 0 0"/>
       <parent link="${prefix}iiwa_base"/>
       <child link="${prefix}link_0"/>
   </joint>
@@ -235,7 +235,7 @@
       <limit effort="320" lower="-2.9668" upper="2.9668" velocity="1.4834"/>
   </joint>
   <joint name="${prefix}joint_a2" type="revolute">
-      <origin rpy="0 0 0" xyz="-0.00043624 0 0.36"/>
+      <origin rpy="0 ${PI/2} 0" xyz="-0.00043624 0 0.36"/>
       <parent link="${prefix}link_1"/>
       <child link="${prefix}link_2"/>
       <axis xyz="0 1 0"/>
@@ -249,7 +249,7 @@
       <limit effort="176" lower="-2.9668" upper="2.9668" velocity="1.7452"/>
   </joint>
   <joint name="${prefix}joint_a4" type="revolute">
-      <origin rpy="0 0 0" xyz="0.00043624 0 0.42"/>
+      <origin rpy="0 ${PI} 0" xyz="0.00043624 0 0.42"/>
       <parent link="${prefix}link_3"/>
       <child link="${prefix}link_4"/>
       <axis xyz="0 -1 0"/>
