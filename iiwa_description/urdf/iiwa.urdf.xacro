@@ -9,12 +9,14 @@
     <color rgba="0.5 0.5 0.5 1.0"/>
   </material>
 
+
+
 <!-- Joint between the ${parent} and the added base -->
-  <joint name="${prefix}iiwa_root_joint" type="fixed">
-      <origin xyz = "0 0 0.86" rpy = "${PI} 0 ${-PI/2}" />
-      <parent link="${parent}"/>
-      <child link="${prefix}iiwa_base"/>
-  </joint>
+<joint name="${prefix}iiwa_root_joint" type="fixed">
+  <origin xyz = "0 0 0.86" rpy = "${PI} 0 ${-PI/2}" />
+  <parent link="${parent}"/>
+  <child link="${prefix}iiwa_base"/>
+</joint>
 
 <!-- Added base -->
  <link name = "${prefix}iiwa_base">
@@ -26,7 +28,7 @@
       </visual>
 
       <collision>
-        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <origin xyz = "0 0 0" rpy = "0 0 ${PI/2}"/>
         <geometry>
           <mesh filename = "package://iiwa_description/meshes/flex_fellow_h800/flex_fellow_h800.stl"/>
         </geometry>
