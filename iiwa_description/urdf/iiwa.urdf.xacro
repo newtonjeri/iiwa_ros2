@@ -255,7 +255,8 @@
       <parent link="${prefix}link_3"/>
       <child link="${prefix}link_4"/>
       <axis xyz="0 -1 0"/>
-      <limit effort="176" lower="-2.0942" upper="2.0942" velocity="1.3089"/>
+      <!-- <limit effort="176" lower="-2.0942" upper="2.0942" velocity="1.3089"/>  -->
+      <limit effort="176" lower="${-PI}" upper="${PI}" velocity="1.3089"/>
   </joint>
   <joint name="${prefix}joint_a5" type="revolute">
       <origin rpy="0 0 0" xyz="0 0 0"/>
