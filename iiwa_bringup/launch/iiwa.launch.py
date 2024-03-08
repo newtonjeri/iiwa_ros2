@@ -57,8 +57,17 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            'prefix',
-            default_value='""',
+            'prefix_1',
+            default_value='"robot1_"',
+            description='Prefix of the joint names, useful for multi-robot setup. \
+                         If changed than also joint names in the controllers \
+                         configuration have to be updated. Expected format "<prefix>/"',
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            'prefix_2',
+            default_value='"robot2_"',
             description='Prefix of the joint names, useful for multi-robot setup. \
                          If changed than also joint names in the controllers \
                          configuration have to be updated. Expected format "<prefix>/"',
@@ -157,7 +166,8 @@ def generate_launch_description():
     controllers_file = LaunchConfiguration('controllers_file')
     description_package = LaunchConfiguration('description_package')
     description_file = LaunchConfiguration('description_file')
-    prefix = LaunchConfiguration('prefix')
+    prefix_1 = LaunchConfiguration('prefix_1')
+    prefix_2 = LaunchConfiguration('prefix_2')
     use_sim = LaunchConfiguration('use_sim')
     use_fake_hardware = LaunchConfiguration('use_fake_hardware')
     use_planning = LaunchConfiguration('use_planning')
@@ -180,8 +190,11 @@ def generate_launch_description():
                 [FindPackageShare(description_package), 'config', description_file]
             ),
             ' ',
-            'prefix:=',
-            prefix,
+            'prefix_1:=',
+            prefix_1,
+            ' ',
+            'prefix_2:=',
+            prefix_2,
             ' ',
             'use_sim:=',
             use_sim,
@@ -230,7 +243,8 @@ def generate_launch_description():
         launch_arguments={
             'description_package': description_package,
             'description_file': description_file,
-            'prefix': prefix,
+            'prefix_1': prefix_1,
+            'prefix_2': prefix_2,
             'start_rviz': start_rviz,
             'base_frame_file': base_frame_file,
             'namespace': namespace,
@@ -249,7 +263,8 @@ def generate_launch_description():
         launch_arguments={
             'description_package': description_package,
             'description_file': description_file,
-            'prefix': prefix,
+            'prefix_1': prefix_1,
+            'prefix_2': prefix_2,
             'base_frame_file': base_frame_file,
             'namespace': namespace,
         }.items(),
