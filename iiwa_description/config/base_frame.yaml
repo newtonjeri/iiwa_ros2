@@ -1,8 +1,17 @@
-# Position and orientation of the robot base wrt World
-base_frame:
-  x: 1.0
+# Position and orientation of the robot 1 base wrt World
+base_frame_1:
+  x: 0.0
   y: 0.0
   z: 0.0
-  roll: 0.0
+  roll: 3.14159265359
   pitch: 0.0
-  yaw: 0.0
+  yaw: -1.570796327
+
+# Position and orientation of the robot 2 base wrt World
+base_frame_2:
+  x: 0.52
+  y: 0.0
+  z: 0.0
+  roll: 3.14159265359
+  pitch: 0.0
+  yaw: 1.570796327

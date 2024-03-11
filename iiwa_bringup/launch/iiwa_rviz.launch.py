@@ -157,6 +157,20 @@ def generate_launch_description():
         output='both',
         parameters=[robot_description],
     )
+
+    # joint_state_publisher_node = Node(
+    #     package='joint_state_publisher',
+    #     executable='joint_state_publisher',
+    #     name='joint_state_publisher',
+    #     namespace=namespace,
+    # )
+    joint_state_publisher_node = Node(
+        package='joint_state_publisher_gui',
+        executable='joint_state_publisher_gui',
+        name='joint_state_publisher_gui',
+        namespace=namespace,
+    )
+
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
@@ -171,6 +185,7 @@ def generate_launch_description():
 
 
     nodes = [
+        joint_state_publisher_node,
         robot_state_pub_node,
         rviz_node
     ]

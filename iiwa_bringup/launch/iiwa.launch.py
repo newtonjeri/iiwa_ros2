@@ -297,6 +297,13 @@ def generate_launch_description():
         output='both',
         parameters=[robot_description],
     )
+    joint_state_publisher_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher',
+        namespace=namespace,
+    )
+
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
@@ -391,6 +398,7 @@ def generate_launch_description():
     nodes = [
         gazebo,
         control_node,
+        joint_state_publisher_node,
         iiwa_planning_launch,
         iiwa_servoing_launch,
         spawn_entity,

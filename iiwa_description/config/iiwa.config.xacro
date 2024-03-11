@@ -36,15 +36,17 @@
     </gazebo>
 
     <xacro:property name="base_frame_file" value="$(arg base_frame_file)"/>
-    <xacro:property name="base_frame" value="${xacro.load_yaml(base_frame_file)['base_frame']}"/>
-    <xacro:iiwa parent="world" prefix="$(arg prefix_1)">
-        <origin xyz="${base_frame['x']} ${base_frame['y']} ${base_frame['z']}"
-            rpy="${base_frame['roll']} ${base_frame['pitch']} ${base_frame['yaw']}" />
+    <xacro:property name="base_frame_1" value="${xacro.load_yaml(base_frame_file)['base_frame_1']}"/>
+    <xacro:property name="base_frame_2" value="${xacro.load_yaml(base_frame_file)['base_frame_2']}"/>
+
+    <xacro:iiwa parent="world" prefix="$(arg prefix_1)" pose_dir = "-">
+        <origin xyz="${base_frame_1['x']} ${base_frame_1['y']} ${base_frame_1['z']}"
+            rpy="${base_frame_1['roll']} ${base_frame_1['pitch']} ${base_frame_1['yaw']}" />
     </xacro:iiwa>
 
-    <xacro:iiwa parent="world" prefix="$(arg prefix_2)">
-        <origin xyz="${base_frame['x']} ${base_frame['y']} ${base_frame['z']}"
-            rpy="${base_frame['roll']} ${base_frame['pitch']} ${base_frame['yaw']}" />
+    <xacro:iiwa parent="world" prefix="$(arg prefix_2)" pose_dir = "">
+        <origin xyz="${base_frame_2['x']} ${base_frame_2['y']} ${base_frame_2['z']}"
+            rpy="${base_frame_2['roll']} ${base_frame_2['pitch']} ${base_frame_2['yaw']}" />
     </xacro:iiwa>
 
 
