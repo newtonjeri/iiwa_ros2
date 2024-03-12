@@ -10,7 +10,8 @@
     <xacro:arg name="prefix_2" default="robot2_" />
     <xacro:arg name="robot_ip" default="192.170.10.2" />
     <xacro:arg name="robot_port" default="30200" />
-    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:arg name="r1_initial_positions_file" default="r1_initial_positions.yaml" />
+    <xacro:arg name="r2_initial_positions_file" default="r2_initial_positions.yaml" />
     <xacro:arg name="command_interface" default="position" />
     <xacro:arg name="base_frame_file" default="base_frame.yaml" />
     <xacro:arg name="description_package" default="iiwa_description" />
@@ -54,14 +55,14 @@
         name="iiwaRobot" prefix="$(arg prefix_1)"
         robot_ip="$(arg robot_ip)" robot_port="$(arg robot_port)"
         command_interface="$(arg command_interface)"
-        initial_positions_file="$(arg initial_positions_file)"
+        initial_positions_file="$(arg r1_initial_positions_file)"
         use_sim="$(arg use_sim)" use_fake_hardware="$(arg use_fake_hardware)"
         />
     <xacro:iiwa_r2c_hardware
         name="iiwaRobot" prefix="$(arg prefix_2)"
         robot_ip="$(arg robot_ip)" robot_port="$(arg robot_port)"
         command_interface="$(arg command_interface)"
-        initial_positions_file="$(arg initial_positions_file)"
+        initial_positions_file="$(arg r2_initial_positions_file)"
         use_sim="$(arg use_sim)" use_fake_hardware="$(arg use_fake_hardware)"
         />
 

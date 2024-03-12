@@ -2,12 +2,14 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="$(arg name)">
 
   <xacro:arg name="name" default="iiwa"/>
-  <xacro:arg name="prefix" default="" />
+  <xacro:arg name="prefix_1" default="prefix_1" />
+  <xacro:arg name="prefix_2" default="prefix_2" />
   <xacro:arg name="description_package" default="iiwa_description" />
 
   <xacro:property name="description_package" value="$(arg description_package)"/>
   <xacro:include filename="$(find ${description_package})/srdf/iiwa_macro.srdf.xacro"/>
 
-  <xacro:iiwa_srdf name="$(arg name)" prefix="$(arg prefix)"/>
+  <xacro:iiwa_srdf name="$(arg name)" prefix="$(arg prefix_1)"/>
+  <xacro:iiwa_srdf name="$(arg name)" prefix="$(arg prefix_2)"/>
 
 </robot>

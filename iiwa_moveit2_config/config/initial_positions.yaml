@@ -1,0 +1,17 @@
+# Default initial positions for iiwa's ros2_control fake system
+
+initial_positions:
+  robot1_joint_a1: 0
+  robot1_joint_a2: 0
+  robot1_joint_a3: 0
+  robot1_joint_a4: 0
+  robot1_joint_a5: 0
+  robot1_joint_a6: 0
+  robot1_joint_a7: 0
+  robot2_joint_a1: 0
+  robot2_joint_a2: 0
+  robot2_joint_a3: 0
+  robot2_joint_a4: 0
+  robot2_joint_a5: 0
+  robot2_joint_a6: 0
+  robot2_joint_a7: 0

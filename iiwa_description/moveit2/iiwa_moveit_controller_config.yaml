@@ -5,17 +5,31 @@
 
     moveit_simple_controller_manager:
       controller_names:
-        - iiwa_arm_controller
+        - robot1_iiwa_arm_controller
+        - robot2_iiwa_arm_controller
 
-      iiwa_arm_controller:
+      robot1_iiwa_arm_controller:
         action_ns: follow_joint_trajectory
         type: FollowJointTrajectory
         default: true
         joints:
-          - joint_a1
-          - joint_a2
-          - joint_a3
-          - joint_a4
-          - joint_a5
-          - joint_a6
-          - joint_a7
+          - robot1_joint_a1
+          - robot1_joint_a2
+          - robot1_joint_a3
+          - robot1_joint_a4
+          - robot1_joint_a5
+          - robot1_joint_a6
+          - robot1_joint_a7
+
+      robot2_iiwa_arm_controller:
+        action_ns: follow_joint_trajectory
+        type: FollowJointTrajectory
+        default: true
+        joints:
+          - robot2_joint_a1
+          - robot2_joint_a2
+          - robot2_joint_a3
+          - robot2_joint_a4
+          - robot2_joint_a5
+          - robot2_joint_a6
+          - robot2_joint_a7

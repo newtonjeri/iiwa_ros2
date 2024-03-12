@@ -16,38 +16,74 @@
       # Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
       # Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
       joint_limits:
-        joint_a1:
+        robot1_joint_a1:
           has_velocity_limits: true
           max_velocity: 1.4835
           has_acceleration_limits: true
           max_acceleration: 3.75 # acceleration values are incorrect!
-        joint_a2:
+        robot1_joint_a2:
           has_velocity_limits: true
           max_velocity: 1.4835
           has_acceleration_limits: true
           max_acceleration: 1.875
-        joint_a3:
+        robot1_joint_a3:
           has_velocity_limits: true
           max_velocity: 1.7453
           has_acceleration_limits: true
           max_acceleration: 2.5
-        joint_a4:
+        robot1_joint_a4:
           has_velocity_limits: true
           max_velocity: 1.309
           has_acceleration_limits: true
           max_acceleration: 3.125
-        joint_a5:
+        robot1_joint_a5:
           has_velocity_limits: true
           max_velocity: 2.2689
           has_acceleration_limits: true
           max_acceleration: 3.75
-        joint_a6:
+        robot1_joint_a6:
           has_velocity_limits: true
           max_velocity: 2.3562
           has_acceleration_limits: true
           max_acceleration: 5.0
-        joint_a7:
+        robot1_joint_a7:
           has_velocity_limits: true
           max_velocity: 2.3562
           has_acceleration_limits: true
           max_acceleration: 5.0
+        robot2_joint_a1:
+          has_velocity_limits: true
+          max_velocity: 1.4835
+          has_acceleration_limits: true
+          max_acceleration: 3.75
+        robot2_joint_a2:
+          has_velocity_limits: true
+          max_velocity: 1.4835
+          has_acceleration_limits: true
+          max_acceleration: 1.875
+        robot2_joint_a3:
+          has_velocity_limits: true
+          max_velocity: 1.7453
+          has_acceleration_limits: true
+          max_acceleration: 2.5
+        robot2_joint_a4:
+          has_velocity_limits: true
+          max_velocity: 1.309
+          has_acceleration_limits: true
+          max_acceleration: 3.125
+        robot2_joint_a5:
+          has_velocity_limits: true
+          max_velocity: 2.2689
+          has_acceleration_limits: true
+          max_acceleration: 3.75
+        robot2_joint_a6:
+          has_velocity_limits: true
+          max_velocity: 2.3562
+          has_acceleration_limits: true
+          max_acceleration: 5.0
+        robot2_joint_a7:
+          has_velocity_limits: true
+          max_velocity: 2.3562
+          has_acceleration_limits: true
+          max_acceleration: 5.0
+

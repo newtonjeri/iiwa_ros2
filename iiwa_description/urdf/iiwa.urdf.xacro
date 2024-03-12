@@ -8,8 +8,12 @@
     <color rgba="0.5 0.5 0.5 1.0"/>
   </material>
 
+  <material name="blue">
+    <color rgba="0.0 0.0 1.0 1.0"/>
+  </material>
+
   <!-- Added base -->
-  <link name = "base">
+  <link name = "iiwa_base" type="fixed">
     <visual>
       <origin xyz = "0 0 0" rpy = "0 0 0"/>
       <geometry>
@@ -44,8 +48,8 @@
 
   <!-- Joint Between the added base and the table-->
   <joint name="joint_a8" type="fixed">
-    <origin rpy="0 0 0" xyz="-0.3 0.50 0.10"/>
-    <parent link="base"/>
+    <origin rpy="0 0 0" xyz="-0.3 0.31 0.10"/>
+    <parent link="iiwa_base"/>
     <child link="table_plane"/>
   </joint>
 
@@ -54,12 +58,12 @@
     <joint name="${prefix}iiwa_root_joint" type="fixed">
       <origin xyz="-0.25 0.0 0.90" rpy="${PI} 0.0 0.0"/>
       <parent link="${parent}"/>
-      <child link="base"/>
+      <child link="iiwa_base"/>
     </joint>
 
     <joint name="${prefix}iiwa_base_joint" type="fixed">
       <xacro:insert_block name="origin" />
-      <parent link="base"/>
+      <parent link="iiwa_base"/>
       <child link="${prefix}link_0"/>
     </joint>
 
@@ -235,6 +239,24 @@
       </collision>
     </link>
 
+    <!-- TCP Link -->
+    <link name = "${prefix}tcp">
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <material name="blue"/>
+        <geometry>
+          <sphere radius = "0.01"/>
+        </geometry>
+      </visual>
+
+      <collision>
+        <origin xyz = "0 0 0" rpy = "0 0 0"/>
+        <geometry>
+          <sphere radius = "0.01"/>
+        </geometry>
+      </collision>
+    </link> 
+
 
     <joint name="${prefix}joint_a1" type="revolute">
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -290,6 +312,12 @@
       <parent link="${prefix}link_7"/>
       <child link="${prefix}tool0"/>
       <axis xyz="0 0 0"/>
+    </joint>
+
+    <joint name="${prefix}tcp_joint" type="fixed">
+      <origin xyz="-0.05 0.0 0.0" rpy="0.0 ${PI} 0"/>
+      <parent link="${prefix}tool0"/>
+      <child link="${prefix}tcp"/>
     </joint>
   </xacro:macro>
 </robot>

@@ -113,9 +113,17 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            'robot_controller',
-            default_value='iiwa_arm_controller',
-            description='Robot controller to start.',
+            'robot1_controller',
+            default_value='robot1_iiwa_arm_controller',
+            description='Robot controller to start robot1.',
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            'robot2_controller',
+            default_value='robot2_iiwa_arm_controller',
+            description='Robot controller to start robot2.',
         )
     )
     declared_arguments.append(
@@ -141,8 +149,16 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            'initial_positions_file',
-            default_value='initial_positions.yaml',
+            'r1_initial_positions_file',
+            default_value='r1_initial_positions.yaml',
+            description='Configuration file of robot initial positions for simulation.',
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            'r2_initial_positions_file',
+            default_value='r2_initial_positions.yaml',
             description='Configuration file of robot initial positions for simulation.',
         )
     )
@@ -172,11 +188,13 @@ def generate_launch_description():
     use_fake_hardware = LaunchConfiguration('use_fake_hardware')
     use_planning = LaunchConfiguration('use_planning')
     use_servoing = LaunchConfiguration('use_servoing')
-    robot_controller = LaunchConfiguration('robot_controller')
+    robot1_controller = LaunchConfiguration('robot1_controller')
+    robot2_controller = LaunchConfiguration('robot2_controller')
     start_rviz = LaunchConfiguration('start_rviz')
     robot_ip = LaunchConfiguration('robot_ip')
     robot_port = LaunchConfiguration('robot_port')
-    initial_positions_file = LaunchConfiguration('initial_positions_file')
+    r1_initial_positions_file = LaunchConfiguration('r1_initial_positions_file')
+    r2_initial_positions_file = LaunchConfiguration('r2_initial_positions_file')
     command_interface = LaunchConfiguration('command_interface')
     base_frame_file = LaunchConfiguration('base_frame_file')
     namespace = LaunchConfiguration('namespace')
@@ -208,8 +226,11 @@ def generate_launch_description():
             'robot_port:=',
             robot_port,
             ' ',
-            'initial_positions_file:=',
-            initial_positions_file,
+            'r1_initial_positions_file:=',
+            r1_initial_positions_file,
+            ' ',
+            'r2_initial_positions_file:=',
+            r2_initial_positions_file,
             ' ',
             'command_interface:=',
             command_interface,
@@ -354,12 +375,17 @@ def generate_launch_description():
         condition=UnlessCondition(use_sim),
     )
 
-    robot_controller_spawner = Node(
+    robot1_controller_spawner = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=[robot_controller, '--controller-manager', [namespace, 'controller_manager']],
+        arguments=[robot1_controller, '--controller-manager', [namespace, 'controller_manager']],
     )
 
+    robot2_controller_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=[robot2_controller, '--controller-manager', [namespace, 'controller_manager']],
+    )
     # Delay `joint_state_broadcaster` after spawn_entity
     delay_joint_state_broadcaster_spawner_after_spawn_entity = RegisterEventHandler(
         event_handler=OnProcessExit(
@@ -391,7 +417,7 @@ def generate_launch_description():
     delay_robot_controller_spawner_after_joint_state_broadcaster_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=joint_state_broadcaster_spawner,
-            on_exit=[robot_controller_spawner],
+            on_exit=[robot1_controller_spawner, robot2_controller_spawner],
         )
     )
 
