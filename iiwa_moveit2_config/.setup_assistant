@@ -5,9 +5,9 @@ moveit_setup_assistant_config:
   srdf:
     relative_path: config/iiwa.srdf
   package_settings:
-    author_name: Newton
-    author_email: newtonkaris@gmail.com
-    generated_timestamp: 1710283536
+    author_name: Newton Kariuki
+    author_email: newtonkaris45@gmail.com
+    generated_timestamp: 1710377310
   control_xacro:
     command:
       - position

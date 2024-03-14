@@ -26,6 +26,11 @@
       </geometry>
     </collision>
   </link>
+  <joint name="iiwa_root_joint" type="fixed">
+    <origin rpy="3.14159265359 0.0 0.0" xyz="-0.25 0.0 0.90"/>
+    <parent link="world"/>
+    <child link="iiwa_base"/>
+  </joint>
   <!-- Added table plane-->
   <link name="table_plane">
     <visual>
@@ -52,11 +57,6 @@
   <gazebo reference="world">
     <static>true</static>
   </gazebo>
-  <joint name="robot1_iiwa_root_joint" type="fixed">
-    <origin rpy="3.14159265359 0.0 0.0" xyz="-0.25 0.0 0.90"/>
-    <parent link="world"/>
-    <child link="iiwa_base"/>
-  </joint>
   <joint name="robot1_iiwa_base_joint" type="fixed">
     <origin rpy="3.14159265359 0.0 -1.570796327" xyz="0.0 0.0 0.0"/>
     <parent link="iiwa_base"/>
@@ -255,11 +255,11 @@
     <limit effort="320" lower="-2.9668" upper="2.9668" velocity="1.4834"/>
   </joint>
   <joint name="robot1_joint_a2" type="revolute">
-    <origin rpy="0 1.5708 0" xyz="-0.00043624 0 0.36"/>
+    <origin rpy="0 -1.0471975511966667 0" xyz="-0.00043624 0 0.36"/>
     <parent link="robot1_link_1"/>
     <child link="robot1_link_2"/>
-    <axis xyz="0 -1 0"/>
-    <limit effort="320" lower="0" upper="4.1888" velocity="1.4834"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="320" lower="-2.0942" upper="2.0942" velocity="1.4834"/>
   </joint>
   <joint name="robot1_joint_a3" type="revolute">
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -269,7 +269,7 @@
     <limit effort="176" lower="-2.9668" upper="2.9668" velocity="1.7452"/>
   </joint>
   <joint name="robot1_joint_a4" type="revolute">
-    <origin rpy="0 0 0" xyz="0.00043624 0 0.42"/>
+    <origin rpy="0 -1.570796326795 0" xyz="0.00043624 0 0.42"/>
     <parent link="robot1_link_3"/>
     <child link="robot1_link_4"/>
     <axis xyz="0 -1 0"/>
@@ -306,11 +306,6 @@
     <origin rpy="0.0 3.14159265359 0" xyz="-0.05 0.0 0.0"/>
     <parent link="robot1_tool0"/>
     <child link="robot1_tcp"/>
-  </joint>
-  <joint name="robot2_iiwa_root_joint" type="fixed">
-    <origin rpy="3.14159265359 0.0 0.0" xyz="-0.25 0.0 0.90"/>
-    <parent link="world"/>
-    <child link="iiwa_base"/>
   </joint>
   <joint name="robot2_iiwa_base_joint" type="fixed">
     <origin rpy="3.14159265359 0.0 1.570796327" xyz="0.52 0.0 0.0"/>
@@ -510,11 +505,11 @@
     <limit effort="320" lower="-2.9668" upper="2.9668" velocity="1.4834"/>
   </joint>
   <joint name="robot2_joint_a2" type="revolute">
-    <origin rpy="0 -1.5708 0" xyz="-0.00043624 0 0.36"/>
+    <origin rpy="0 1.0471975511966667 0" xyz="-0.00043624 0 0.36"/>
     <parent link="robot2_link_1"/>
     <child link="robot2_link_2"/>
     <axis xyz="0 1 0"/>
-    <limit effort="320" lower="0" upper="4.1888" velocity="1.4834"/>
+    <limit effort="320" lower="-2.0942" upper="2.0942" velocity="1.4834"/>
   </joint>
   <joint name="robot2_joint_a3" type="revolute">
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -524,7 +519,7 @@
     <limit effort="176" lower="-2.9668" upper="2.9668" velocity="1.7452"/>
   </joint>
   <joint name="robot2_joint_a4" type="revolute">
-    <origin rpy="0 0 0" xyz="0.00043624 0 0.42"/>
+    <origin rpy="0 1.570796326795 0" xyz="0.00043624 0 0.42"/>
     <parent link="robot2_link_3"/>
     <child link="robot2_link_4"/>
     <axis xyz="0 -1 0"/>
@@ -789,6 +784,11 @@
     </sensor>
   </ros2_control>
   <!-- ros_control plugin -->
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>/home/newtonjeri/Franks_Project/project_ws/install/iiwa_description/share/iiwa_description/config/iiwa_controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
   <!-- color -->
   <gazebo reference="robot1_link_7">
     <material>Gazebo/Gray</material>

@@ -29,6 +29,12 @@
     </collision>
   </link>
 
+  <joint name="iiwa_root_joint" type="fixed">
+    <origin xyz="-0.25 0.0 0.90" rpy="${PI} 0.0 ${PI}"/>
+    <parent link="world"/>
+    <child link="iiwa_base"/>
+  </joint>
+
   <!-- Added table plane-->
   <link name="table_plane">
     <visual>
@@ -54,12 +60,6 @@
   </joint>
 
   <xacro:macro name="iiwa" params="parent prefix pose_dir *origin">
-
-    <joint name="${prefix}iiwa_root_joint" type="fixed">
-      <origin xyz="-0.25 0.0 0.90" rpy="${PI} 0.0 0.0"/>
-      <parent link="${parent}"/>
-      <child link="iiwa_base"/>
-    </joint>
 
     <joint name="${prefix}iiwa_base_joint" type="fixed">
       <xacro:insert_block name="origin" />
